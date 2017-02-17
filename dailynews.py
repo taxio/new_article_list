@@ -40,9 +40,9 @@ class GIGAZINE:
 class CNETJapan:
 
     def get_new_article():
-        html = urllib2.urlopen("https://japan.cnet.com/")
+        html = urllib2.urlopen("https://japan.cnet.com/news/")
         soup = BeautifulSoup(html,"lxml")
-        latestnews = soup.find('div',id="latestnews")
+        latestnews = soup.find('ul',class_="news_list_2011")
         articles = latestnews.find_all('h3')
         article_list = [[0 for i in range(2)] for j in range(len(articles))]
         for i in range(len(articles)):
@@ -51,3 +51,11 @@ class CNETJapan:
             article_list[i][1] = "https://japan.cnet.com"+link.get("href")
 
         return article_list
+
+#for debug
+# print("ITpro")
+# print(ITpro.get_new_article())
+# print("\nGIGAZINE")
+# print(GIGAZINE.get_content())
+# print("\nCNET Japan")
+# print(CNETJapan.get_new_article())
